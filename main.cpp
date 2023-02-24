@@ -17,13 +17,14 @@
 
 int main(int argc, char *argv[])
 {
-    //    QCoreApplication a(argc, argv);
+    // QCoreApplication a(argc, argv);
+    // encoding();
 
-    //    encoding_test();
+    std::cout << "你好" << std::endl;
 
-    QApplication a(argc, argv);
-    MainWindow m;
-    m.show();
+    // QApplication a(argc, argv);
+    //    MainWindow m;
+    //    m.show();
 
-    return a.exec();
+    // return a.exec();
 }

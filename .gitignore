@@ -37,3 +37,6 @@ Makefile*
 *.user
 debug
 release
+
+# vscode
+.vscode

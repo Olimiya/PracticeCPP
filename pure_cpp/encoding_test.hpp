@@ -1,4 +1,4 @@
-﻿/*!
+/*!
     @file        encoding_test.hpp
     @brief       测试CPP字符编码、以及字符输出
     @details     详细说明
@@ -40,10 +40,11 @@ std::string to_binary(VType value)
     std::bitset<sizeof(VType) * 8> bs(value);
     return bs.to_string();
 }
+
 int encoding_test()
 {
-    //此语句重要，在win7 + vs2012和
-    // ubuntu 12.04测试结果一致，只要打印wchar_t字符，均加此语句，否则出错。
+    // 此语句重要，在win7 + vs2012和
+    //  ubuntu 12.04测试结果一致，只要打印wchar_t字符，均加此语句，否则出错。
     setlocale(LC_ALL, "");
 
     /******************  case 1  **********************************/
@@ -138,41 +139,6 @@ int encoding_test()
     int *t_i = new int(1);
     qDebug() << "int data" << t_i << " size of data" << sizeof(t_i);
 
-    QString tmp = u8"国家";
-    auto tmp_utf8 = tmp.toUtf8();
-    auto data = tmp_utf8.data();
-    qDebug() << "data" << data << " size of data" << sizeof(data);
-    //    std::cout << "std" << sizeof(data) << std::endl;
-    int number = 100;
-    auto data_size = sizeof(data) - 2;
-    auto total_size = number * data_size + 2;
-    char *big_data = new char[total_size];
-    memset(big_data, 0, total_size);
-    for (int i = 0; i < number; i++) {
-        memcpy(big_data + i * data_size, data, data_size);
-    }
-    qDebug() << "copy data" << big_data << " size of data" << sizeof(big_data);
-
-    qDebug() << "tmp=" << tmp << endl;
-    qDebug() << "toUtf8" << tmp_utf8 << "with size of: " << sizeof(tmp_utf8)
-             << endl;                                 //返回utf8编码的一串数字
-    qDebug() << "toLatin1" << tmp.toLatin1() << endl; //"汉字"不在latin1字符集中，所以结果无意义
-    char *p = new char[1 + strlen(tmp.toLatin1().data())];
-    strcpy(p, tmp.toLatin1().data());
-    for (int i = 0; p[i] != '\0'; i++) {
-        printf("0x%02x ", p[i]);
-    }
-    printf("\n");
-    delete p;
-    qDebug() << "toLocal8bit" << tmp.toLocal8Bit()
-             << endl; //返回windows操作系统设置的字符集gb18030的编码
-    qDebug() << "toUcs4" << tmp.toUcs4() << endl; //返回ucs4编码组成的QVector，一个汉字占用4字节
-
-    QFile file("test_file_big.txt");
-    file.open(QFile::WriteOnly);
-    file.write(data);
-    file.close();
-
     /******************  case 文件    **********************************/
     //    QString s = u8"中国";
     //    std::cout << s.toUtf8().toStdString() << std::endl;
@@ -193,9 +159,24 @@ int encoding_test()
 
 void qt_encoding_test()
 {
-    QString tmp = "汉字";
+    QString tmp = u8"国家";
+    auto tmp_utf8 = tmp.toUtf8();
+    auto data = tmp_utf8.data();
+    qDebug() << "data" << data << " size of data" << sizeof(data);
+    //    std::cout << "std" << sizeof(data) << std::endl;
+    int number = 100;
+    auto data_size = sizeof(data) - 2;
+    auto total_size = number * data_size + 2;
+    char *big_data = new char[total_size];
+    memset(big_data, 0, total_size);
+    for (int i = 0; i < number; i++) {
+        memcpy(big_data + i * data_size, data, data_size);
+    }
+    qDebug() << "copy data" << big_data << " size of data" << sizeof(big_data);
+
     qDebug() << "tmp=" << tmp << endl;
-    qDebug() << "toUtf8" << tmp.toUtf8() << endl; //返回utf8编码的一串数字
+    qDebug() << "toUtf8" << tmp_utf8 << "with size of: " << sizeof(tmp_utf8)
+             << endl;                                 // 返回utf8编码的一串数字
     qDebug() << "toLatin1" << tmp.toLatin1() << endl; //"汉字"不在latin1字符集中，所以结果无意义
     char *p = new char[1 + strlen(tmp.toLatin1().data())];
     strcpy(p, tmp.toLatin1().data());
@@ -205,6 +186,18 @@ void qt_encoding_test()
     printf("\n");
     delete p;
     qDebug() << "toLocal8bit" << tmp.toLocal8Bit()
-             << endl; //返回windows操作系统设置的字符集gb18030的编码
-    qDebug() << "toUcs4" << tmp.toUcs4() << endl; //返回ucs4编码组成的QVector，一个汉字占用4字节
+             << endl; // 返回windows操作系统设置的字符集gb18030的编码
+    qDebug() << "toUcs4" << tmp.toUcs4() << endl; // 返回ucs4编码组成的QVector，一个汉字占用4字节
+
+    QFile file("test_file_big.txt");
+    file.open(QFile::WriteOnly);
+    file.write(data);
+    file.close();
+}
+
+void encoding()
+{
+    char s[] = "国家";
+    printf("%s", s);
+    return;
 }
