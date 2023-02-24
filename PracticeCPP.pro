@@ -1,7 +1,9 @@
-QT -= gui
+QT += core gui
 
-CONFIG += c++11 console
+CONFIG += c++11
 CONFIG -= app_bundle
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -15,7 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    qt_normal/mainwindow.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -26,4 +29,8 @@ HEADERS += \
     pure_cpp/encoding_test.hpp \
     qt_feature/QtConcurrent.hpp \
     pure_cpp/ReflectionImpl.h \
-    alg_cpp/binary_search.hpp
+    alg_cpp/binary_search.hpp \
+    qt_normal/mainwindow.h
+
+FORMS += \
+    qt_normal/mainwindow.ui

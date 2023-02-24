@@ -11,14 +11,19 @@
     @copyright   Copyright By AI&Simulaiton Lab, All Rights Reserved
 */
 
-#include <QCoreApplication>
+#include <QApplication>
 #include "pure_cpp/encoding_test.hpp"
+#include "qt_normal/mainwindow.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    //    QCoreApplication a(argc, argv);
 
-    encoding_test();
+    //    encoding_test();
+
+    QApplication a(argc, argv);
+    MainWindow m;
+    m.show();
 
     return a.exec();
 }

@@ -190,3 +190,21 @@ int encoding_test()
     //    ifile.close();
     return 0;
 }
+
+void qt_encoding_test()
+{
+    QString tmp = "汉字";
+    qDebug() << "tmp=" << tmp << endl;
+    qDebug() << "toUtf8" << tmp.toUtf8() << endl; //返回utf8编码的一串数字
+    qDebug() << "toLatin1" << tmp.toLatin1() << endl; //"汉字"不在latin1字符集中，所以结果无意义
+    char *p = new char[1 + strlen(tmp.toLatin1().data())];
+    strcpy(p, tmp.toLatin1().data());
+    for (int i = 0; p[i] != '\0'; i++) {
+        printf("0x%02x ", p[i]);
+    }
+    printf("\n");
+    delete p;
+    qDebug() << "toLocal8bit" << tmp.toLocal8Bit()
+             << endl; //返回windows操作系统设置的字符集gb18030的编码
+    qDebug() << "toUcs4" << tmp.toUcs4() << endl; //返回ucs4编码组成的QVector，一个汉字占用4字节
+}
