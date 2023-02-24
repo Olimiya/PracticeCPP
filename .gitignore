@@ -40,3 +40,5 @@ release
 
 # vscode
 .vscode
+.vs
+GeneratedFiles

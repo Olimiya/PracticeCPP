@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     auto l = new QLabel(this);
-    l->setText(QString::fromUtf8("你好"));
+    l->setText(QString("你好"));
     this->setCentralWidget(l);
 }
 
