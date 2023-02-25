@@ -37,6 +37,7 @@ Makefile*
 *.user
 debug
 release
+ui_*.h
 
 # vscode
 .vscode
