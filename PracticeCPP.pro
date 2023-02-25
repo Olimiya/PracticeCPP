@@ -31,11 +31,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    pure_cpp/encoding_test.hpp \
     qt_feature/QtConcurrent.hpp \
-    pure_cpp/ReflectionImpl.h \
-    alg_cpp/binary_search.hpp \
-    qt_normal/mainwindow.h
+    qt_normal/mainwindow.h \
+    cpp/encoding_test.hpp \
+    cpp/ReflectionImpl.h \
+    cpp_alg/binary_search.hpp
 
 FORMS += \
     qt_normal/mainwindow.ui

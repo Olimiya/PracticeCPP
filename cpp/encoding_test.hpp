@@ -33,6 +33,48 @@
 #include <QDebug>
 #include <QFile>
 #include <iostream>
+#include <QTextStream>
+#include <QDataStream>
+#include <QTextCodec>
+
+using namespace std;
+void cpp_encoding_test()
+{
+    char sa[] = "国家";
+    char sb[] = u8"国家";
+
+    char *p = (char *)sa;
+    int i = 0;
+
+    printf("sizeof(sa) is %d\n", sizeof(sa));
+    for (; i < sizeof(sa); i++) {
+        printf("byte: %x\n", p[i]);
+    }
+    printf("content start\n");
+    printf("%s\n", sa);
+    printf("content end\n");
+
+    i = 0;
+    p = (char *)sb;
+    printf("sizeof(sb) is %d\n", sizeof(sb));
+    for (; i < sizeof(sb); i++) {
+        printf("byte: %x\n", p[i]);
+    }
+    printf("content start\n");
+    printf("%s\n", sb);
+    printf("content end\n");
+
+    qDebug() << "output by qdebug sa: " << sa;
+    qDebug() << "output by qdebug sb:" << sb;
+
+    ofstream output("output_sa.txt");
+    output << sa;
+    output.close();
+
+    ofstream output1("output_sb.txt");
+    output1 << sb;
+    output1.close();
+}
 
 template <typename VType>
 std::string to_binary(VType value)
@@ -41,7 +83,7 @@ std::string to_binary(VType value)
     return bs.to_string();
 }
 
-int encoding_test()
+int wchar_encoding_test()
 {
     // 此语句重要，在win7 + vs2012和
     //  ubuntu 12.04测试结果一致，只要打印wchar_t字符，均加此语句，否则出错。
@@ -159,45 +201,37 @@ int encoding_test()
 
 void qt_encoding_test()
 {
-    QString tmp = u8"国家";
-    auto tmp_utf8 = tmp.toUtf8();
-    auto data = tmp_utf8.data();
-    qDebug() << "data" << data << " size of data" << sizeof(data);
-    //    std::cout << "std" << sizeof(data) << std::endl;
-    int number = 100;
-    auto data_size = sizeof(data) - 2;
-    auto total_size = number * data_size + 2;
-    char *big_data = new char[total_size];
-    memset(big_data, 0, total_size);
-    for (int i = 0; i < number; i++) {
-        memcpy(big_data + i * data_size, data, data_size);
-    }
-    qDebug() << "copy data" << big_data << " size of data" << sizeof(big_data);
+    QString str = u8"国家"; // 和aa对比
 
-    qDebug() << "tmp=" << tmp << endl;
-    qDebug() << "toUtf8" << tmp_utf8 << "with size of: " << sizeof(tmp_utf8)
-             << endl;                                 // 返回utf8编码的一串数字
-    qDebug() << "toLatin1" << tmp.toLatin1() << endl; //"汉字"不在latin1字符集中，所以结果无意义
-    char *p = new char[1 + strlen(tmp.toLatin1().data())];
-    strcpy(p, tmp.toLatin1().data());
-    for (int i = 0; p[i] != '\0'; i++) {
-        printf("0x%02x ", p[i]);
-    }
-    printf("\n");
-    delete p;
-    qDebug() << "toLocal8bit" << tmp.toLocal8Bit()
-             << endl; // 返回windows操作系统设置的字符集gb18030的编码
-    qDebug() << "toUcs4" << tmp.toUcs4() << endl; // 返回ucs4编码组成的QVector，一个汉字占用4字节
-
-    QFile file("test_file_big.txt");
+    // 通过序列化查看内部的数据编码
+    QFile file("qt_test.txt");
     file.open(QFile::WriteOnly);
-    file.write(data);
-    file.close();
-}
+    QDataStream ostream(&file);
 
-void encoding()
-{
-    char s[] = "国家";
-    printf("%s", s);
-    return;
+    ostream << str;
+
+    // 测试以下接口：toLatin1、toUtf8、toLocal8Bit、toUcs4
+    auto latin1 = str.toLatin1();
+    qDebug() << "toLatin1" << latin1
+             << "with size of: " << latin1.size(); // "汉字"不在latin1字符集中，所以结果无意义
+
+    auto utf8 = str.toUtf8();
+    qDebug() << "toUtf8" << utf8 << "with size of: " << (utf8.size()); // 返回utf8编码的一串数字
+
+    auto local8bit = str.toLocal8Bit();
+    qDebug() << "toLocal8Bit" << local8bit << "with size of: "
+             << (local8bit.size()); // 返回windows操作系统设置的字符集gb2312的编码
+
+    auto ucs4 = str.toUcs4();
+    qDebug() << "toUcs4" << ucs4
+             << "with size of: " << (ucs4.size()); // 返回ucs4编码组成的QVector，一个汉字占用4字节
+
+    ostream << "\n";
+    ostream << latin1 << "\n";
+    ostream << utf8 << "\n";
+    ostream << local8bit << "\n";
+    ostream << ucs4 << "\n";
+
+    file.flush();
+    file.close();
 }
