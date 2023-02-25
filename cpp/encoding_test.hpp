@@ -67,11 +67,11 @@ void cpp_encoding_test()
     qDebug() << "output by qdebug sa: " << sa;
     qDebug() << "output by qdebug sb:" << sb;
 
-    ofstream output("output_sa.txt");
+    ofstream output("output/output_sa.txt");
     output << sa;
     output.close();
 
-    ofstream output1("output_sb.txt");
+    ofstream output1("output/output_sb.txt");
     output1 << sb;
     output1.close();
 }
@@ -204,7 +204,7 @@ void qt_encoding_test()
     QString str = u8"国家"; // 和aa对比
 
     // 通过序列化查看内部的数据编码
-    QFile file("qt_test.txt");
+    QFile file("output/qt_test.txt");
     file.open(QFile::WriteOnly);
     QDataStream ostream(&file);
 
