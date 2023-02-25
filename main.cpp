@@ -18,7 +18,7 @@
 int main(int argc, char *argv[])
 {
 
-    qt_encoding_test();
+    cpp_encoding_test();
     //    QApplication a(argc, argv);
     //    MainWindow m;
     //    m.show();

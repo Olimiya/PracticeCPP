@@ -40,12 +40,10 @@
 using namespace std;
 void cpp_encoding_test()
 {
-    char sa[] = "国家";
-    char sb[] = u8"国家";
+    char sa[] = "国 ";
 
     char *p = (char *)sa;
     int i = 0;
-
     printf("sizeof(sa) is %d\n", sizeof(sa));
     for (; i < sizeof(sa); i++) {
         printf("byte: %x\n", p[i]);
@@ -53,27 +51,26 @@ void cpp_encoding_test()
     printf("content start\n");
     printf("%s\n", sa);
     printf("content end\n");
-
-    i = 0;
-    p = (char *)sb;
-    printf("sizeof(sb) is %d\n", sizeof(sb));
-    for (; i < sizeof(sb); i++) {
-        printf("byte: %x\n", p[i]);
-    }
-    printf("content start\n");
-    printf("%s\n", sb);
-    printf("content end\n");
-
     qDebug() << "output by qdebug sa: " << sa;
-    qDebug() << "output by qdebug sb:" << sb;
-
     ofstream output("output/output_sa.txt");
     output << sa;
     output.close();
 
-    ofstream output1("output/output_sb.txt");
-    output1 << sb;
-    output1.close();
+    //    char sb[] = u8"国家";
+    //    i = 0;
+    //    p = (char *)sb;
+    //    printf("sizeof(sb) is %d\n", sizeof(sb));
+    //    for (; i < sizeof(sb); i++) {
+    //        printf("byte: %x\n", p[i]);
+    //    }
+    //    printf("content start\n");
+    //    printf("%s\n", sb);
+    //    printf("content end\n");
+    //    qDebug() << "output by qdebug sb:" << sb;
+
+    //    ofstream output1("output/output_sb.txt");
+    //    output1 << sb;
+    //    output1.close();
 }
 
 template <typename VType>
@@ -201,7 +198,7 @@ int wchar_encoding_test()
 
 void qt_encoding_test()
 {
-    QString str = u8"国家"; // 和aa对比
+    QString str = u8"aa"; // 和aa对比
 
     // 通过序列化查看内部的数据编码
     QFile file("output/qt_test.txt");
