@@ -11,14 +11,15 @@
     @copyright   Copyright By AI&Simulaiton Lab, All Rights Reserved
 */
 
-#include <QApplication>
-#include "cpp/encoding_test.hpp"
-#include "qt_normal/mainwindow.h"
+// #include "cpp/encoding_test.hpp"
+// #include "qt_normal/mainwindow.h"
+#include <iostream>
+#include "cpp_alg/binary_search.hpp"
 
 int main(int argc, char *argv[])
 {
-
-    cpp_encoding_test();
+    binary_search();
+    
     //    QApplication a(argc, argv);
     //    MainWindow m;
     //    m.show();
