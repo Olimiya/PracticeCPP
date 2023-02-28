@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 msvc {
     QMAKE_CFLAGS +=  /utf-8
     QMAKE_CXXFLAGS +=  /utf-8
-    QMAKE_CXXFLAGS_WARN_ON += -wd4828 # 与GBK项目的编译警告去除
 }
 
 SOURCES += \
@@ -35,7 +34,8 @@ HEADERS += \
     qt_normal/mainwindow.h \
     cpp/encoding_test.hpp \
     cpp/ReflectionImpl.h \
-    cpp_alg/binary_search.hpp
+    cpp_alg/binary_search.hpp \
+    cpp_alg/remove_element.hpp
 
 FORMS += \
     qt_normal/mainwindow.ui

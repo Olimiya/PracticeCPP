@@ -18,8 +18,8 @@
 
 int main(int argc, char *argv[])
 {
-    binary_search();
-    
+    // binary_search();
+
     //    QApplication a(argc, argv);
     //    MainWindow m;
     //    m.show();

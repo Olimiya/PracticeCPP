@@ -4,27 +4,27 @@ using namespace std;
 /**
  * @brief remove_element
  * 移除元素
- * 27题、数组第二题
+ * 27题、移除元素第一题、数组第二题
  * @param nums
  * @param val
  * @return
  */
 int remove_element_violent(vector<int> &nums, int val)
 {
-    int size = nums.size(); //set a size variable to the size of the vector
-    for(int i = 0; i < size; i++) //for loop to loop through the vector
+    int size = nums.size();        // set a size variable to the size of the vector
+    for (int i = 0; i < size; i++) // for loop to loop through the vector
     {
-        if(nums[i] == val) //if the value in the vector is equal to the value we want to remove
+        if (nums[i] == val) // if the value in the vector is equal to the value we want to remove
         {
-            for(int j = i + 1; j < size; j++) //loop through the vector starting after the value we want to remove
+            for (int j = i + 1; j < size; j++) // loop through the vector starting after the value we want to remove
             {
-                nums[j -1] = nums[j]; //set the value at j - 1 to the value at j
+                nums[j - 1] = nums[j]; // set the value at j - 1 to the value at j
             }
-            i--; //decrement i so we can check the value at the current index again
-            size--; //decrement the size variable since we removed an element
+            i--;    // decrement i so we can check the value at the current index again
+            size--; // decrement the size variable since we removed an element
         }
     }
-    return size; //return the new size of the vector
+    return size; // return the new size of the vector
 }
 
 /* Here is the explanation for the code above:
@@ -35,12 +35,21 @@ int remove_element_violent(vector<int> &nums, int val)
 int remove_element(vector<int> &nums, int val)
 {
     int i = 0;
-    for(int j = 0; j < nums.size(); j++)
+    for (int j = 0; j < nums.size(); j++)
     {
-        if(nums[j] != val)
+        if (nums[j] != val)
         {
             nums[i++] = nums[j];
         }
     }
     return i;
 }
+
+/**
+ * @brief removeDuplicates
+ * 删除排序数组中的重复项
+ * 26题、数组第七题
+ * @param nums
+ * @return
+ */
+int removeDuplicates(vector<int> &nums);
