@@ -35,7 +35,8 @@ HEADERS += \
     cpp/encoding_test.hpp \
     cpp/ReflectionImpl.h \
     cpp_alg/binary_search.hpp \
-    cpp_alg/remove_element.hpp
+    cpp_alg/remove_element.hpp \
+    cpp_alg/sort.hpp
 
 FORMS += \
     qt_normal/mainwindow.ui

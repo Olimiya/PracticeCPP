@@ -5,7 +5,7 @@ using namespace std;
 /**
  * @brief binary_search
  * 二分查找
- * 704题、二分查找第一题、数组第一题
+ * 704题、二分查找第一题
  * @param nums
  * 输入有序数组
  * @param target
@@ -18,15 +18,15 @@ int binary_search(vector<int> &nums, int target)
     int right = nums.size() - 1; // right border of searching interval
 
     while (left <= right)
-    { // loop until we find the target or there is no elements to search
+    {                                 // loop until we find the target or there is no elements to search
         int mid = (left + right) / 2; // find the middle of the searching interval
         // int mid = left + (right - left) / 2; // avoid overflow
 
         if (nums[mid] == target)     // if the middle element equals to the target
             return mid;              // we found it
         else if (nums[mid] < target) // if the middle element is less than the target
-            left = mid + 1; // we can discard the left half of the searching interval (including the
-                            // middle element)
+            left = mid + 1;          // we can discard the left half of the searching interval (including the
+                                     // middle element)
         else
             right = mid - 1; // we can discard the right half of the searching interval (including
                              // the middle element)
@@ -37,7 +37,7 @@ int binary_search(vector<int> &nums, int target)
 /**
  * @brief searchInsert
  * 搜索插入位置
- * 35题、二分查找第二题、数组第三题
+ * 35题、二分查找第二题
  * @details
  * Here is the explanation for the code above:
     1. We set up two pointers, left and right, and assign them to the leftmost and rightmost index
@@ -132,7 +132,7 @@ int getBorder(vector<int> &nums, int target, bool isLeft = true)
 /**
  * @brief searchRange
  * 在排序数组中查找元素的第一个和最后一个位置
- * 34题、二分查找第三题、数组第四题
+ * 34题、二分查找第三题
  * @details
  * Here is the explanation for the code above:
     1. getLeftBorder() returns the index of the leftmost position of target in nums, if target is
@@ -152,7 +152,7 @@ int getBorder(vector<int> &nums, int target, bool isLeft = true)
  */
 vector<int> searchRange(vector<int> &nums, int target)
 {
-    vector<int> res = { -1, -1 };
+    vector<int> res = {-1, -1};
     int left = getBorder(nums, target);
     int right = getBorder(nums, target, false);
 
@@ -182,7 +182,7 @@ vector<int> searchRange(vector<int> &nums, int target)
  */
 vector<int> searchRange_violent(vector<int> &nums, int target)
 {
-    vector<int> res = { -1, -1 };
+    vector<int> res = {-1, -1};
     int left = 0;
     int right = nums.size() - 1;
 
@@ -212,7 +212,7 @@ vector<int> searchRange_violent(vector<int> &nums, int target)
 
 #pragma endregion
 
-/** 69. Sqrt(x) 、二分查找第四题、、数组第五题
+/** 69. Sqrt(x) 、二分查找第四题
  * @brief mySqrt
  * 求平方根
  * @details
@@ -245,7 +245,7 @@ int mySqrt(int x)
 /**
  * @brief isPerferctSquare
  * 判断一个数是否是完全平方数
- * 367题、二分查找第五题、数组第六题
+ * 367题、二分查找第五题
  * @param x
  * @return
  */
