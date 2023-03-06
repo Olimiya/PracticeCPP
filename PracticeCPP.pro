@@ -36,7 +36,8 @@ HEADERS += \
     cpp/ReflectionImpl.h \
     cpp_alg/binary_search.hpp \
     cpp_alg/remove_element.hpp \
-    cpp_alg/sort.hpp
+    cpp_alg/sort.hpp \
+    cpp_alg/sortedSquares.hpp
 
 FORMS += \
     qt_normal/mainwindow.ui

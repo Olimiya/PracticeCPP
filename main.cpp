@@ -14,11 +14,26 @@
 // #include "cpp/encoding_test.hpp"
 // #include "qt_normal/mainwindow.h"
 #include <iostream>
-#include "cpp_alg/binary_search.hpp"
+#include "cpp_alg/list/removeElements.hpp"
 
 int main(int argc, char *argv[])
 {
     // binary_search();
+    ListNode *head = new ListNode(1);
+    head->next = new ListNode(2);
+    head->next->next = new ListNode(3);
+    head->next->next->next = new ListNode(4);
+    head->next->next->next->next = new ListNode(5);
+    head->next->next->next->next->next = new ListNode(6);
+
+    ListNode *result = removeElements(head, 3);
+    while (result != nullptr)
+    {
+        std::cout << result->val << " ";
+        result = result->next;
+    }
+    std::cout << std::endl;
+    return 0;
 
     //    QApplication a(argc, argv);
     //    MainWindow m;
