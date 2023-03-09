@@ -20,11 +20,15 @@ ListNode *reverseList(ListNode *head)
     auto next = head->next;
     while (next != nullptr)
     {
+        // 1. save the next->next node
         auto temp = next->next;
+        // 2. reverse the next node
         next->next = pre;
+        // 3. move pre and next node
         pre = next;
         next = temp;
     }
+    // 4. make sure the head node's next is null
     head->next = nullptr;
     return pre;
 }
