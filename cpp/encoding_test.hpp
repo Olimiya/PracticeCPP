@@ -45,7 +45,8 @@ void cpp_encoding_test()
     char *p = (char *)sa;
     int i = 0;
     printf("sizeof(sa) is %d\n", sizeof(sa));
-    for (; i < sizeof(sa); i++) {
+    for (; i < sizeof(sa); i++)
+    {
         printf("byte: %x\n", p[i]);
     }
     printf("content start\n");
@@ -198,7 +199,7 @@ int wchar_encoding_test()
 
 void qt_encoding_test()
 {
-    QString str = u8"aa"; // 和aa对比
+    QString str = u8"国家"; // 和aa对比
 
     // 通过序列化查看内部的数据编码
     QFile file("output/qt_test.txt");
@@ -228,6 +229,18 @@ void qt_encoding_test()
     ostream << utf8 << "\n";
     ostream << local8bit << "\n";
     ostream << ucs4 << "\n";
+
+    // toStdString接口
+    std::string stdstring = std::string(str.toLocal8Bit().constData());
+    cout << "toStdString: " << stdstring << endl;
+    std::ofstream stdostream("output/c++_test.txt");
+    stdostream << stdstring << "\n";
+    stdostream.close();
+
+    std::ofstream stdostream_file(string("output/") + str.toLocal8Bit().toStdString() + ".txt");
+    stdostream_file << str.toLocal8Bit().toStdString() << "\n";
+    stdostream_file << stdstring << "\n";
+    stdostream_file.close();
 
     file.flush();
     file.close();

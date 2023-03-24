@@ -12,10 +12,10 @@ struct ListNode
  * 707题、设计链表
  * @details
  * 请你设计一个链表，支持在链表的第一个元素前和最后一个元素后添加元素。
- * 请你完成 MyLinkedList 类：
- * MyLinkedList() 初始化 MyLinkedList 对象。
- * int get(int index) 获取链表中第 index 个节点的值。如果索引无效，返回 -1 。
- * void addAtHead(int val) 在链表的第一个元素之前添加一个值为 val 的节点。
+ * 请你完成 MyLinkedList 类：
+ * MyLinkedList() 初始化 MyLinkedList 对象。
+ * int get(int index) 获取链表中第 index 个节点的值。如果索引无效，返回 -1 。
+ * void addAtHead(int val) 在链表的第一个元素之前添加一个值为 val 的节点。
  * 插入后，新节点将成为链表的第一个节点。
  * @details
  * Your MyLinkedList object will be instantiated and called as such:
@@ -110,7 +110,7 @@ private:
 class MyLinkedList_doubly
 {
 public:
-    MyLinkedList()
+    MyLinkedList_doubly()
     {
         head = new ListNode(-1);
         tail = new ListNode(-1);
