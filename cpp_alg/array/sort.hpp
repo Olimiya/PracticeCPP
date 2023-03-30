@@ -61,8 +61,11 @@ void quickSortPartition(vector<int> &nums, int l, int r)
 
 vector<int> sortArray_QuickSort(vector<int> &nums)
 {
-    srand(time(NULL));
+    // Initialize the random number generator
+   srand(time(NULL));
+    // Call the quicksort partition function
     quickSortPartition(nums, 0, nums.size() - 1);
+    // Return the sorted vector
     return nums;
 }
 
