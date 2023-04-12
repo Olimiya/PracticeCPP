@@ -40,16 +40,18 @@ using namespace std;
  * 这个位置的字符完全相同的。
  * @details
  * KMP算法。重点在于计算和理解前缀表next数组。我的理解是跳转到数组所在索引位置。计算前缀表比较难理解。
+ * 时间复杂度：O(m+n)，其中 m 和 n 分别是字符串 haystack 和 needle 的长度。
  */
 int strStr(string haystack, string needle)
 {
     // 获取next数组
+    // 计算过程使用i,j两个指针，利用动态规划的思想，将计算过程中的中间结果保存下来，避免重复计算。
     // Initialization
-    int next[needle.size()];
+    int next[needle.size()]; // next数组，存储的是前缀和后缀的最长公共元素的长度
     // 示例：aabaaf，next数组为：0 1 0 1 2 2
-    int j = 0; // j表示已经匹配的字符个数
-    next[0] = 0; // 因为第一个字符，自己匹配自己，所以为0
-    for (int i = 1; i < needle.size(); i++) // i表示当前要匹配的字符
+    int j = 0;                              // j表示已经匹配的字符个数，即前缀的长度
+    next[0] = 0;                            // 因为第一个字符，自己匹配自己，所以为0
+    for (int i = 1; i < needle.size(); i++) // i表示当前要匹配的字符，即后缀的第一个字符
     {
         while (j > 0 && needle[i] != needle[j]) // j要保证大于0，因为下面有取j-1作为数组下标的操作
         {
@@ -80,6 +82,7 @@ int strStr(string haystack, string needle)
 /**
  * @brief strStr_violent
  * 暴力法
+ * 时间复杂度：O((n-m+1)*m)，其中 n 和 m 分别是字符串 haystack 和 needle 的长度。
  */
 int strStr_violent(string haystack, string needle)
 {

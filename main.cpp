@@ -15,11 +15,19 @@
 // #include "qt_normal/mainwindow.h"
 #include <iostream>
 #include "cpp_alg/list/removeElements.hpp"
+#include "cpp/template_test.hpp"
+
+void cB(TSTopicContextPtr pdata)
+{
+    std::cout << "hello world" << std::endl;
+    return;
+}
 
 int main(int argc, char *argv[])
 {
     // binary_search();
-    qt_encoding_test();
+    auto ptr = boost::shared_ptr<TSTopicContext>(new TSTopicContext());
+    cB(ptr);
 
     return 0;
 

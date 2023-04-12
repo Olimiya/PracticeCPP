@@ -20,6 +20,9 @@ msvc {
     QMAKE_CXXFLAGS +=  /utf-8
 }
 
+
+INCLUDEPATH += $$(BOOST_ROOT)
+
 SOURCES += \
     main.cpp \
     qt_normal/mainwindow.cpp
@@ -34,10 +37,7 @@ HEADERS += \
     qt_normal/mainwindow.h \
     cpp/encoding_test.hpp \
     cpp/ReflectionImpl.h \
-    cpp_alg/binary_search.hpp \
-    cpp_alg/remove_element.hpp \
-    cpp_alg/sort.hpp \
-    cpp_alg/sortedSquares.hpp
+    cpp/template_test.hpp
 
 FORMS += \
     qt_normal/mainwindow.ui
